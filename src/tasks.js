@@ -60,7 +60,55 @@ export function filterEventsByDate(events, date, when) {
  * alphabetical order
  */
 export function getNamesOfTags(event, tags) {
-  // if event.tags equals tag.id
+//   const objectsEqual = (o1, o2) =>
+//   Object.keys(o1).length === Object.keys(o2).length 
+//       && Object.keys(o1).every(p => o1[p] === o2[p]);
+
+// const obj1 = { name: 'John', age: 33};
+// const obj2 = { age: 33, name: 'John' };
+// const obj3 = { name: 'John', age: 45 };
+      
+// console.log(objectsEqual(obj1, obj2)); // true
+// console.log(objectsEqual(obj1, obj3)); // false
+
+// console.log(event.tags)
+
+let tagName = []
+
+if(event.tags){
+  event.tags.map(tagId => {
+    tags.map(tag => {
+  
+      if(tagId === tag.id){
+        tagName.push(tag.name)
+      }
+    })
+    console.log(tagName)
+  })
+  return tagName.sort() 
+
+}
+  return [];
+
+
+
+//   return tags.name
+// }else{
+  
+ 
+
+  // console.log(tags[0])
+  // let newTag = [...new Set(tags)]
+  // console.log(newTag)
+  // let tagsArray = []
+  // for(let i = 0; i < 1; i++){
+  //    tagsArray.push(tags[i])
+     
+  // }
+  // console.log(tagsArray)
+  
+
+  // if event.tags equals tags.id
   // return tag.name
   // else return []
   
@@ -85,13 +133,13 @@ export function getNamesOfTags(event, tags) {
   // })
 
   
-  console.log(tags)
+  // console.log(tags)
 //     if(event.tags){
 //       console.log(event)
 //     }
   
 //  else
-  return [];
+  
 }
 
 
