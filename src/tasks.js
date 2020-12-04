@@ -60,27 +60,37 @@ export function filterEventsByDate(events, date, when) {
  * alphabetical order
  */
 export function getNamesOfTags(event, tags) {
+  // if event.tags equals tag.id
+  // return tag.name
+  // else return []
+  
   // let tag = tags[0]
   // console.log(tags)
   // let eachTag = tags.map(tag => tag.id)
   // console.log(eachTag)
-
-  console.log(event)
-
+// console.log(event.tags)
   // event.tags.map(tag => {
-  //   if tag.id === 
+  //   console.log(tag)
   // })
-  // tags.map(tag => {
+  // console.log(eventTagId)
+
+//   event.tags.map(tag => {
+//     if (tag.id === tags.map(tag => tag.id)){
+//     return tag.name
+//   }
+// })
+  // tags.filter(tag => {
+    // tag.id === event.tags
   //   console.log(tag.name)
   // })
 
   
-  // console.log(tags)
+  console.log(tags)
 //     if(event.tags){
 //       console.log(event)
 //     }
   
-// else
+//  else
   return [];
 }
 
