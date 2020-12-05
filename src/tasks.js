@@ -60,86 +60,18 @@ export function filterEventsByDate(events, date, when) {
  * alphabetical order
  */
 export function getNamesOfTags(event, tags) {
-//   const objectsEqual = (o1, o2) =>
-//   Object.keys(o1).length === Object.keys(o2).length 
-//       && Object.keys(o1).every(p => o1[p] === o2[p]);
-
-// const obj1 = { name: 'John', age: 33};
-// const obj2 = { age: 33, name: 'John' };
-// const obj3 = { name: 'John', age: 45 };
-      
-// console.log(objectsEqual(obj1, obj2)); // true
-// console.log(objectsEqual(obj1, obj3)); // false
-
-// console.log(event.tags)
-
 let tagName = []
-
-if(event.tags){
-  event.tags.map(tagId => {
-    tags.map(tag => {
-  
-      if(tagId === tag.id){
-        tagName.push(tag.name)
-      }
+  if(event.tags){
+    event.tags.map(tagId => {
+      tags.map(tag => {
+        if(tagId === tag.id){
+          tagName.push(tag.name)
+        }
+      })
     })
-    console.log(tagName)
-  })
-  return tagName.sort() 
-
-}
-  return [];
-
-
-
-//   return tags.name
-// }else{
-  
- 
-
-  // console.log(tags[0])
-  // let newTag = [...new Set(tags)]
-  // console.log(newTag)
-  // let tagsArray = []
-  // for(let i = 0; i < 1; i++){
-  //    tagsArray.push(tags[i])
-     
-  // }
-  // console.log(tagsArray)
-  
-
-  // if event.tags equals tags.id
-  // return tag.name
-  // else return []
-  
-  // let tag = tags[0]
-  // console.log(tags)
-  // let eachTag = tags.map(tag => tag.id)
-  // console.log(eachTag)
-// console.log(event.tags)
-  // event.tags.map(tag => {
-  //   console.log(tag)
-  // })
-  // console.log(eventTagId)
-
-//   event.tags.map(tag => {
-//     if (tag.id === tags.map(tag => tag.id)){
-//     return tag.name
-//   }
-// })
-  // tags.filter(tag => {
-    // tag.id === event.tags
-  //   console.log(tag.name)
-  // })
-
-  
-  // console.log(tags)
-//     if(event.tags){
-//       console.log(event)
-//     }
-  
-//  else
-  
+    return tagName.sort() 
+  }
+return [];
 }
 
 
@@ -166,5 +98,23 @@ if(event.tags){
  * averageRegistration, and mostPopularEvent. 
  */
 export function calculateStatisticsForTag(events, tag) {
-  return {};
+  let tagStats = {
+    eventCount: 0
+    // averageRegistartion: null,
+    // mostPopularEvent: null
+  }
+  // for each tag, how many events have it
+  events.map(event => {
+    event.tags.map(tagId => {
+      if(tagId === tag.id){
+        tagStats.eventCount += 1
+      }
+    })
+    console.log(event)
+  })
+  
+  console.log(tagStats)
+  // console.log(events)
+  
+  return tagStats;
 } 
