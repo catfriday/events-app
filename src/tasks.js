@@ -99,21 +99,33 @@ return [];
  */
 export function calculateStatisticsForTag(events, tag) {
   let tagStats = {
-    eventCount: 0
-    // averageRegistartion: null,
-    // mostPopularEvent: null
+    eventCount: 0,
+    averageRegistartion: null,
+    mostPopularEvent: null
   }
   // for each tag, how many events have it
+  let regUsers = []
   events.map(event => {
     event.tags.map(tagId => {
       if(tagId === tag.id){
         tagStats.eventCount += 1
+
+        regUsers.push(event.registeredUsers.length)
+        let num = regUsers.reduce((a, b) => a + b, 0)/tagStats.eventCount
+        
+        tagStats.averageRegistration =  num.toFixed(2)
+
+        // if event.registeredUseres.length === Math.max(...regUsers)
+        // return event.name
+        //  if there are two, return event that alpha numerically comes first
+        if(event.registeredUsers.length === Math.max(...regUsers)){
+          tagStats.mostPopularEvent = event.name
+        }
       }
     })
-    console.log(event)
   })
   
-  console.log(tagStats)
+  // console.log(tagStats)
   // console.log(events)
   
   return tagStats;
