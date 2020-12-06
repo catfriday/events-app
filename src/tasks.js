@@ -100,7 +100,7 @@ return [];
 export function calculateStatisticsForTag(events, tag) {
   let tagStats = {
     eventCount: 0,
-    averageRegistartion: null,
+    averageRegistration: null,
     mostPopularEvent: null
   }
   // for each tag, how many events have it
@@ -112,7 +112,6 @@ export function calculateStatisticsForTag(events, tag) {
 
         regUsers.push(event.registeredUsers.length)
         let num = regUsers.reduce((a, b) => a + b, 0)/tagStats.eventCount
-        
         tagStats.averageRegistration =  num.toFixed(2)
 
         // if event.registeredUseres.length === Math.max(...regUsers)
