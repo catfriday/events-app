@@ -17,8 +17,8 @@ import moment from 'moment';
  * year format.
  */
 export function formatDate(date) {  
-  return moment(date).format("dddd, MMM D, YYYY");
-};
+  return moment(date).format("dddd, MMM D, YYYY")
+}
 
 
  /**
@@ -34,16 +34,21 @@ export function formatDate(date) {
  * @returns {Object[]} List of events that occur before or after the given date. 
  */
 export function filterEventsByDate(events, date, when) { 
+  // create array for events occuring before given date and one for after given date
   let afterArray = events.filter(event => event.date >= moment(date).format("YYYY-MM-DD"))
   let beforeArray = events.filter(event => event.date < moment(date).format("YYYY-MM-DD"))
+  
+  // if 'when' equals afer, return afterArray
+  //  if 'when' equals before, return beforeArray
   if(when === 'after'){
     return afterArray
   }
   else if(when === 'before'){
     return beforeArray
   }
-  else 
-  return events;
+  else{
+    return events
+  } 
 };
 
 
@@ -59,19 +64,24 @@ export function filterEventsByDate(events, date, when) {
  * @returns {Object[]} Names of tags who are associated with the event in 
  * alphabetical order
  */
-export function getNamesOfTags(event, tags) {
-let tagName = []
+export function getNamesOfTags(event, tags){
+  // if event.tags exists and equals tag.id
+  // return tag event names in alphabetical order
+  // else return []
+
+let tagNames = []
   if(event.tags){
     event.tags.map(tagId => {
       tags.map(tag => {
         if(tagId === tag.id){
-          tagName.push(tag.name)
+          tagNames.push(tag.name)
         }
       })
     })
-    return tagName.sort() 
+    return tagNames.sort() 
+  }else{
+    return []
   }
-return [];
 }
 
 
@@ -98,23 +108,30 @@ return [];
  * averageRegistration, and mostPopularEvent. 
  */
 export function calculateStatisticsForTag(events, tag) {
+  // create object with all given keys and defaults
   let tagStats = {
     eventCount: 0,
     averageRegistration: null,
     mostPopularEvent: null
   }
-  // for each tag, how many events have it
+
+  // create array to store list of all registeredUsers.length per event 
   let regUsers = []
+
   events.map(event => {
     event.tags.map(tagId => {
       if(tagId === tag.id){
+
+        // for each tag, how many events have it
         tagStats.eventCount += 1
 
+        // get sum of all registeredUsers per event and divide by eventCount
+        //  return averageRegistration to the nearest hundreth decimal
         regUsers.push(event.registeredUsers.length)
         let num = regUsers.reduce((a, b) => a + b, 0)/tagStats.eventCount
         tagStats.averageRegistration =  num.toFixed(2)
 
-        // if event.registeredUseres.length === Math.max(...regUsers)
+        // if event.registeredUseres.length is the largest number in regUsers array
         // return event.name
         //  if there are two, return event that alpha numerically comes first
         if(event.registeredUsers.length === Math.max(...regUsers)){
@@ -123,9 +140,5 @@ export function calculateStatisticsForTag(events, tag) {
       }
     })
   })
-  
-  // console.log(tagStats)
-  // console.log(events)
-  
-  return tagStats;
+  return tagStats
 } 
